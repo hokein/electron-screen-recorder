@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Electron Screen Recorder</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="screen-recorder.css">
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <video id="video" autoplay></video>
+    <p>
+      <button id="record-desktop">Record Desktop</button>
+      <button id="record-window">Record Window</button>
+      <button id="record-camera">Record Camera</button>
+      <br><label> <input type="checkbox" id="micro-audio" value="false">Include Microphone Audio</label>
+      <!--<br><label> <input type="checkbox" id="system-audio" value="false">Include System Audio</label>-->
+    </p>
+    <button id="record-stop" hidden="true">Stop Recording</button>
+    <p>
+      <button id="play-button" hidden="true">Play Recording</button>
+      <button id="download-button" hidden="true">Download file</button>
+    </p>
+  </body>
+</html>

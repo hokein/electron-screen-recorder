@@ -1,0 +1,13 @@
+body {
+  background: white;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;
+  -webkit-flex-direction: column;
+}
+video {
+  width: 320;
+  height: 180;
+  border: 1px solid #e2e2e2;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+}
