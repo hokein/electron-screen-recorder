@@ -11,6 +11,7 @@ app.on('ready', () => {
 
   pickerDialog = new BrowserWindow({
     parent: mainWindow,
+    skipTaskbar: true,
     modal: true,
     show: false,
     height: 340,
