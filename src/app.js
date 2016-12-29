@@ -144,12 +144,12 @@ const getMediaStream = (stream) => {
 
   if (includeMic) {
     console.log('Adding audio track.')
-    let audioTracks = microAudioStream.getMicroAudioTracks()
+    let audioTracks = microAudioStream.getAudioTracks()
     localStream.addTrack(audioTracks[0])
   }
   // if (includeSysAudio) {
     // console.log('Adding system audio track.')
-    // let audioTracks = stream.getMicroAudioTracks()
+    // let audioTracks = stream.getoAudioTracks()
     // if (audioTracks.length < 1) {
       // console.log('No audio track in screen stream.')
     // }
