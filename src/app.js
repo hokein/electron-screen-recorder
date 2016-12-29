@@ -1,4 +1,5 @@
-const {desktopCapturer} = require('electron')
+const {desktopCapturer, ipcRenderer} = require('electron')
+const domify = require('domify')
 
 let localStream
 let microAudioStream
@@ -84,14 +85,16 @@ const recordCamera = (stream) => {
   }, gotMediaStream, getUserMediaError)
 };
 
+ipcRenderer.on('source-id-selected', (event, sourceId) => {
+  // Users have cancel the picker dialog.
+  if (!sourceId) return
+  console.log(sourceId)
+  onAccessApproved(sourceId);
+})
+
 const recordWindow = (stream) => {
   cleanRecord()
-  desktopCapturer.getSources({ types: ['window'] }, (error, sources) => {
-    if (error) throw error
-    // TODO(hokein): prompt up a picker dialog allowing users to select which
-    // window they'd like to share.
-    onAccessApproved(sources[0].id)
-  })
+  ipcRenderer.send('show-picker')
 };
 
 const recorderOnDataAvailable = (event) => {
