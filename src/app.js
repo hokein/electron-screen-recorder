@@ -130,13 +130,13 @@ const play = () => {
 }
 
 const download = () => {
-  let blob = new Blob(data, {type: 'video/webm'})
+  let blob = new Blob(recordedChunks, {type: 'video/webm'})
   let url = URL.createObjectURL(blob)
   let a = document.createElement('a')
   document.body.appendChild(a)
   a.style = 'display: none'
   a.href = url
-  a.download = name
+  a.download = 'electron-screen-recorder.webm'
   a.click()
   setTimeout(function () {
     document.body.removeChild(a)
@@ -199,6 +199,6 @@ const onAccessApproved = (id) => {
   navigator.webkitGetUserMedia({
     audio: false,
     video: { mandatory: { chromeMediaSource: 'desktop', chromeMediaSourceId: id,
-      maxWidth: 320, maxHeight: 180 } }
+      maxWidth: window.screen.width, maxHeight: window.screen.height } }
   }, getMediaStream, getUserMediaError)
 }
