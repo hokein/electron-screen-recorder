@@ -6,8 +6,8 @@ body {
   -webkit-flex-direction: column;
 }
 video {
-  width: 320;
-  height: 180;
+  width: 320px;
+  height: 180px;
   border: 1px solid #e2e2e2;
   box-shadow: 0 3px 3px rgba(0,0,0,0.2);
 }
