@@ -6,6 +6,8 @@ This is an electron-based screen recorder application. It uses WebRTC and
 You can choose a specific screen/window to record, and the record file is saved
 as `webm`.
 
+![screenshot](screenshot/screen-recorder.gif)
+
 ## Using
 
 ```sh
