@@ -7,14 +7,14 @@ let recordedChunks = []
 let numRecordedChunks = 0
 let recorder
 let includeMic = false
-//let includeSysAudio = false
+// let includeSysAudio = false
 
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#record-desktop').addEventListener('click', recordDesktop)
   document.querySelector('#record-camera').addEventListener('click', recordCamera)
   document.querySelector('#record-window').addEventListener('click', recordWindow)
   document.querySelector('#micro-audio').addEventListener('click', microAudioCheck)
-  //document.querySelector('#system-audio').addEventListener('click', sysAudioCheck)
+  // document.querySelector('#system-audio').addEventListener('click', sysAudioCheck)
   document.querySelector('#record-stop').addEventListener('click', stopRecording)
   document.querySelector('#play-button').addEventListener('click', play)
   document.querySelector('#download-button').addEventListener('click', download)
@@ -39,8 +39,8 @@ const enableButtons = () => {
 }
 
 const microAudioCheck = () => {
-  //includeSysAudio = false
-  //document.querySelector('#system-audio').checked = false
+  // includeSysAudio = false
+  // document.querySelector('#system-audio').checked = false
 
   // Mute video so we don't play loopback audio.
   var video = document.querySelector('video')
@@ -48,54 +48,52 @@ const microAudioCheck = () => {
   includeMic = !includeMic
   console.log('Audio =', includeMic)
 
-  if (includeMic)
+  if (includeMic) {
     navigator.webkitGetUserMedia({ audio: true, video: false },
         getMicroAudio, getUserMediaError)
-};
+  }
+}
 
-//function sysAudioCheck () {
-  //// Mute video so we don't play loopback audio
-  //var video = document.querySelector('video')
-  //video.muted = true
+// function sysAudioCheck () {
+  // // Mute video so we don't play loopback audio
+  // var video = document.querySelector('video')
+  // video.muted = true
 
-  //includeSysAudio = !includeSysAudio
-  //includeMic = false
-  //document.querySelector('#micro-audio').checked = false
-  //console.log('System Audio =', includeSysAudio)
-//};
+  // includeSysAudio = !includeSysAudio
+  // includeMic = false
+  // document.querySelector('#micro-audio').checked = false
+  // console.log('System Audio =', includeSysAudio)
+// };
 
 const cleanRecord = () => {
   recordedChunks = []
   numRecordedChunks = 0
 }
 
-const recordDesktop = (stream) => {
-  cleanRecord()
-  desktopCapturer.getSources({ types: ['screen'] }, (error, sources) => {
-    if (error) throw error
-    onAccessApproved(sources[0].id)
-  })
-};
+ipcRenderer.on('source-id-selected', (event, sourceId) => {
+  // Users have cancel the picker dialog.
+  if (!sourceId) return
+  console.log(sourceId)
+  onAccessApproved(sourceId)
+})
 
-const recordCamera = (stream) => {
+const recordDesktop = () => {
+  cleanRecord()
+  ipcRenderer.send('show-picker', { types: ['screen'] })
+}
+
+const recordWindow = () => {
+  cleanRecord()
+  ipcRenderer.send('show-picker', { types: ['window'] })
+}
+
+const recordCamera = () => {
   cleanRecord()
   navigator.webkitGetUserMedia({
     audio: false,
     video: { mandatory: { minWidth: 1280, minHeight: 720 } }
   }, gotMediaStream, getUserMediaError)
-};
-
-ipcRenderer.on('source-id-selected', (event, sourceId) => {
-  // Users have cancel the picker dialog.
-  if (!sourceId) return
-  console.log(sourceId)
-  onAccessApproved(sourceId);
-})
-
-const recordWindow = (stream) => {
-  cleanRecord()
-  ipcRenderer.send('show-picker')
-};
+}
 
 const recorderOnDataAvailable = (event) => {
   if (event.data && event.data.size > 0) {
@@ -149,15 +147,15 @@ const getMediaStream = (stream) => {
     let audioTracks = microAudioStream.getMicroAudioTracks()
     localStream.addTrack(audioTracks[0])
   }
-  //if (includeSysAudio) {
-    //console.log('Adding system audio track.')
-    //let audioTracks = stream.getMicroAudioTracks()
-    //if (audioTracks.length < 1) {
-      //console.log('No audio track in screen stream.')
-    //}
-  //} else {
-    //console.log('Not adding audio track.')
-  //}
+  // if (includeSysAudio) {
+    // console.log('Adding system audio track.')
+    // let audioTracks = stream.getMicroAudioTracks()
+    // if (audioTracks.length < 1) {
+      // console.log('No audio track in screen stream.')
+    // }
+  // } else {
+    // console.log('Not adding audio track.')
+  // }
   try {
     console.log('Start recording the stream.')
     recorder = new MediaRecorder(stream)
@@ -170,17 +168,17 @@ const getMediaStream = (stream) => {
   recorder.start()
   console.log('Recorder is started.')
   disableButtons()
-};
+}
 
 const getMicroAudio = (stream) => {
   console.log('Received audio stream.')
   microAudioStream = stream
   stream.onended = () => { console.log('Micro audio ended.') }
-};
+}
 
 const getUserMediaError = () => {
   console.log('getUserMedia() failed.')
-};
+}
 
 const onAccessApproved = (id) => {
   if (!id) {
@@ -191,6 +189,6 @@ const onAccessApproved = (id) => {
   navigator.webkitGetUserMedia({
     audio: false,
     video: { mandatory: { chromeMediaSource: 'desktop', chromeMediaSourceId: id,
-                          maxWidth: 320, maxHeight: 180 } }
+      maxWidth: 320, maxHeight: 180 } }
   }, getMediaStream, getUserMediaError)
 }
