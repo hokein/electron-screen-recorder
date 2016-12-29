@@ -1,4 +1,3 @@
-
 const {desktopCapturer, ipcRenderer} = require('electron')
 const domify = require('domify')
 
