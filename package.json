@@ -15,6 +15,7 @@
     "electron-screen-recorder": "./launch.js"
   },
   "dependencies": {
+    "domify": "^1.4.0",
     "electron": "1.4.12"
   }
 }
