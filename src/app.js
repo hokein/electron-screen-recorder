@@ -102,7 +102,7 @@ const recordCamera = () => {
   navigator.webkitGetUserMedia({
     audio: false,
     video: { mandatory: { minWidth: 1280, minHeight: 720 } }
-  }, gotMediaStream, getUserMediaError)
+  }, getMediaStream, getUserMediaError)
 }
 
 const recorderOnDataAvailable = (event) => {
