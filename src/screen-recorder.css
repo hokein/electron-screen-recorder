@@ -1,13 +1,57 @@
 body {
-  background: white;
+  background-color: #ffffff;
+  color: #37474f;
+  font-family: monospace;
+  padding:15px;
   display: -webkit-flex;
   -webkit-justify-content: center;
   -webkit-align-items: center;
   -webkit-flex-direction: column;
 }
+
+.row {
+  display:block;
+  width:100%;
+  text-align: center;
+}
+.ck-button {
+  display:inline-block;
+}
+
+.ck-button, button {
+  overflow:auto;
+  color: #37474f;
+  border-color: #37474f;
+  border: 1px solid;
+  /* border-radius: 5px; */
+  max-width: 50px;
+  max-height: 50px;
+  padding: 10px;
+  background: #fff;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+  font-size: 20px;
+  -webkit-backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ck-button:hover, button:hover {
+  background-color: #F7F7F7;
+}
+
+.ck-button input {
+  position:absolute;
+  top: -20px;
+}
+
+.ck-button.active {
+  color: #29759b;
+  border-color: #29759b;
+  background-color: #d7f2ff;
+}
+
 video {
-  width: 320px;
-  height: 180px;
-  border: 1px solid #e2e2e2;
-  box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+  width:100%;
+  border: 1px solid #37474f;
 }
