@@ -1,13 +1,24 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
+const menubar = require('menubar')
+
 
 let mainWindow
 let pickerDialog
+let mb = menubar({
+  icon: 'IconTemplate.png',
+  width:380,
+  height:350,
+  dir: process.cwd() + '/src',
+  tooltip: 'Electron screen recorder',
+  preloadWindow: true,
+  // alwaysOnTop -> keep the menubar window opened (for debug only)
+  // alwaysOnTop: true
+})
 
-app.on('ready', () => {
-  mainWindow = new BrowserWindow({
-    height: 500,
-    width: 600
-  });
+
+mb.on('ready', () => {
+  // Opens the chrome dev tools at launch for debug
+  // mb.window.openDevTools()
 
   pickerDialog = new BrowserWindow({
     parent: mainWindow,
@@ -17,7 +28,6 @@ app.on('ready', () => {
     height: 390,
     width: 680
   })
-  mainWindow.loadURL('file://' + __dirname + '/index.html')
   pickerDialog.loadURL('file://' + __dirname + '/picker.html')
 });
 
@@ -28,5 +38,5 @@ ipcMain.on('show-picker', (event, options) => {
 
 ipcMain.on('source-id-selected', (event, sourceId) => {
   pickerDialog.hide()
-  mainWindow.webContents.send('source-id-selected', sourceId)
+  mb.window.webContents.send('source-id-selected', sourceId)
 })
