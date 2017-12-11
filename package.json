@@ -10,9 +10,17 @@
     "Screen Recorder",
     "WebRTC"
   ],
+  "scripts": {
+    "build": "electron-packager ./src ElectronScreenRecorder  --platform=darwin --arch=x64 --version=0.36.0 --icon=src/Icon.icns",
+    "start": "electron ."
+  },
   "main": "src/main.js",
   "bin": {
     "electron-screen-recorder": "./launch.js"
+  },
+  "devDependencies": {
+    "electron-packager": "^10.1.0",
+    "electron-prebuilt": "^1.4.13"
   },
   "dependencies": {
     "domify": "^1.4.0",

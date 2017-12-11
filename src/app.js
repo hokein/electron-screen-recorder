@@ -56,6 +56,10 @@ const microAudioCheck = () => {
   var video = document.querySelector('video')
   video.muted = true
   includeMic = !includeMic
+  if(includeMic)
+    document.querySelector('#micro-audio-btn').classList.add('active');
+  else
+    document.querySelector('#micro-audio-btn').classList.remove('active');
   console.log('Audio =', includeMic)
 
   if (includeMic) {
@@ -76,6 +80,8 @@ const microAudioCheck = () => {
 // };
 
 const cleanRecord = () => {
+  let video = document.querySelector('video');
+  video.controls = false;
   recordedChunks = []
   numRecordedChunks = 0
 }
@@ -124,6 +130,7 @@ const stopRecording = () => {
 const play = () => {
   // Unmute video.
   let video = document.querySelector('video')
+  video.controls = true;
   video.muted = false
   let blob = new Blob(recordedChunks, {type: 'video/webm'})
   video.src = window.URL.createObjectURL(blob)

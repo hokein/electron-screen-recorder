@@ -5,8 +5,8 @@ let pickerDialog
 
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
-    height: 320,
-    width: 500
+    height: 500,
+    width: 600
   });
 
   pickerDialog = new BrowserWindow({
@@ -14,8 +14,8 @@ app.on('ready', () => {
     skipTaskbar: true,
     modal: true,
     show: false,
-    height: 340,
-    width: 620
+    height: 390,
+    width: 680
   })
   mainWindow.loadURL('file://' + __dirname + '/index.html')
   pickerDialog.loadURL('file://' + __dirname + '/picker.html')

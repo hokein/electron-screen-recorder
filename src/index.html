@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Electron Screen Recorder</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="screen-recorder.css">
+    <link rel="stylesheet" href="assets/themify-icons.css">
     <script src="app.js"></script>
-  </head>
-  <body>
-    <video id="video" autoplay></video>
-    <p>
-      <button id="record-desktop">Record Desktop</button>
-      <button id="record-window">Record Window</button>
-      <button id="record-camera">Record Camera</button>
-      <button id="play-video">Play Video</button>
-      <br><label> <input type="checkbox" id="micro-audio" value="false">Include Microphone Audio</label>
-      <!--<br><label> <input type="checkbox" id="system-audio" value="false">Include System Audio</label>-->
-    </p>
-    <button id="record-stop" hidden="true">Stop Recording</button>
-    <p>
-      <button id="play-button" hidden="true">Play Recording</button>
-      <button id="download-button" hidden="true">Download file</button>
-    </p>
-  </body>
+</head>
+
+<body>
+
+    <div class="row">
+        <video id="video" controls class="video-js" data-setup='{}'></video>
+    </div>
+    <div class="row">
+        <button id="record-desktop" title="Record Desktop"><i class="ti-desktop"></i></button>
+        <button id="record-window"><i class="ti-layers" title="Record Window"></i></button>
+        <button id="record-camera"><i class="ti-video-camera" title="Record Camera"></i></button>
+        <button id="play-video"><i class="ti-upload" title="Load Video"></i></button>
+        <div class="ck-button" id="micro-audio-btn">
+            <label> 
+              <input type="checkbox" id="micro-audio" value="false">
+              <i class="ti-microphone" title="Include Microphone Audio"></i>
+          </label>
+        </div>
+        <!--<br><label> <input type="checkbox" id="system-audio" value="false">Include System Audio</label>-->
+    </div>
+    <hr/>
+    <div class="row">
+        <button id="record-stop" hidden="true"><i class="ti-control-stop" title="Stop Recording"></i></button>
+    </div>
+    <div class="row">
+        <button id="play-button" hidden="true"><i class="ti-control-play" title="Play Recording"></i></button>
+        <button id="download-button" hidden="true"><i class="ti-save-alt" title="Save Video (webm)"></i></button>
+    </div>
+</body>
+
 </html>
