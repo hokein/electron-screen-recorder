@@ -20,12 +20,10 @@
   },
   "devDependencies": {
     "electron-packager": "^10.1.0",
-    "electron-prebuilt": "^1.4.13",
-    "video.js": "^6.4.0"
+    "electron-prebuilt": "^1.4.13"
   },
   "dependencies": {
     "domify": "^1.4.0",
-    "electron": "1.7.9",
-    "menubar": "^5.2.3"
+    "electron": "1.7.9"
   }
 }
