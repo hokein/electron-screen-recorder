@@ -1,27 +1,46 @@
-const {app, BrowserWindow, ipcMain} = require('electron')
+const {app, BrowserWindow, ipcMain, Menu} = require('electron')
 const menubar = require('menubar')
 
-
-let mainWindow
 let pickerDialog
+const dir = process.cwd() + '/src'
 let mb = menubar({
-  icon: 'IconTemplate.png',
+  icon: dir + '/assets/icons/icon.png',
   width:380,
   height:350,
-  dir: process.cwd() + '/src',
+  dir: dir,
   tooltip: 'Electron screen recorder',
   preloadWindow: true,
-  // alwaysOnTop -> keep the menubar window opened (for debug only)
-  // alwaysOnTop: true
+  alwaysOnTop: true
 })
 
 
+
+function changeAlwaysOnTop (menuItem, browserWindow, event) {
+  mb.setOption('alwaysOnTop', menuItem.checked)
+}
+
+function openDevTools (menuItem, browserWindow, event) {
+  mb.window.openDevTools()
+}
+
 mb.on('ready', () => {
-  // Opens the chrome dev tools at launch for debug
-  // mb.window.openDevTools()
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Always on top', 
+      type: 'checkbox', 
+      checked:mb.getOption('alwaysOnTop'), 
+      click: changeAlwaysOnTop
+    },
+    {
+      label: 'Open dev tools', 
+      type: 'normal', 
+      click: openDevTools
+    }
+  ])
+  mb.tray.setContextMenu(contextMenu)
 
   pickerDialog = new BrowserWindow({
-    parent: mainWindow,
+    parent: mb.window,
     skipTaskbar: true,
     modal: true,
     show: false,
@@ -29,7 +48,7 @@ mb.on('ready', () => {
     width: 680
   })
   pickerDialog.loadURL('file://' + __dirname + '/picker.html')
-});
+})
 
 ipcMain.on('show-picker', (event, options) => {
   pickerDialog.show()

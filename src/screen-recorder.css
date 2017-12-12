@@ -17,7 +17,11 @@ body {
 .ck-button {
   display:inline-block;
 }
-
+.ck-button.disabled, button:disabled {
+  color: #ffffff;
+  border-color: #ffffff;
+  background: #F7F7F7;
+}
 .ck-button, button {
   overflow:auto;
   color: #37474f;
@@ -27,7 +31,7 @@ body {
   max-width: 50px;
   max-height: 50px;
   padding: 10px;
-  background: #fff;
+  background: #ffffff;
   vertical-align: middle;
   position: relative;
   z-index: 1;
