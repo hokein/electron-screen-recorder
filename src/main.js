@@ -2,7 +2,7 @@ const {app, BrowserWindow, ipcMain, Menu} = require('electron')
 const menubar = require('menubar')
 
 let pickerDialog
-const dir = process.cwd() + '/src'
+const dir = __dirname
 let mb = menubar({
   icon: dir + '/assets/icons/icon.png',
   width:380,
