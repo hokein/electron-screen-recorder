@@ -23,6 +23,10 @@ function openDevTools (menuItem, browserWindow, event) {
   mb.window.openDevTools()
 }
 
+function quit (menuItem, browserWindow, event) {
+  app.quit();
+}
+
 mb.on('ready', () => {
   const contextMenu = Menu.buildFromTemplate([
     {
@@ -35,6 +39,11 @@ mb.on('ready', () => {
       label: 'Open dev tools', 
       type: 'normal', 
       click: openDevTools
+    },
+    {
+      label: 'Quit', 
+      type: 'normal', 
+      click: quit
     }
   ])
   mb.tray.setContextMenu(contextMenu)
