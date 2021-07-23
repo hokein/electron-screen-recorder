@@ -24,6 +24,6 @@
   },
   "dependencies": {
     "domify": "^1.4.0",
-    "electron": "1.7.9"
+    "electron": "^12.0.5"
   }
 }
