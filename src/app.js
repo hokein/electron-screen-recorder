@@ -1,3 +1,7 @@
+/**
+ * Render index.html
+ */
+
 const {desktopCapturer, ipcRenderer, remote} = require('electron')
 const domify = require('domify')
 
@@ -48,6 +52,9 @@ const enableButtons = () => {
   document.querySelector('#download-button').hidden = true
 }
 
+/**
+ * Mute video so we don't play loopback audio.
+ */
 const microAudioCheck = () => {
   // includeSysAudio = false
   // document.querySelector('#system-audio').checked = false

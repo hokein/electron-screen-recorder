@@ -6,7 +6,12 @@ let pickerDialog
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
     height: 500,
-    width: 600
+    width: 600,
+    webPreferences: {
+      contextIsolation: false,
+      nodeIntegration: true,
+      enableRemoteModule: true
+    }
   });
 
   pickerDialog = new BrowserWindow({
@@ -15,7 +20,12 @@ app.on('ready', () => {
     modal: true,
     show: false,
     height: 390,
-    width: 680
+    width: 680,
+    webPreferences: {
+      contextIsolation: false,
+      nodeIntegration: true,
+      enableRemoteModule: true
+    }
   })
   mainWindow.loadURL('file://' + __dirname + '/index.html')
   pickerDialog.loadURL('file://' + __dirname + '/picker.html')
