@@ -6,6 +6,12 @@ This is an electron-based screen recorder application. It uses WebRTC and
 You can choose a specific screen/window to record, and the record file is saved
 as `webm`.
 
+## Sponsor: Recall.ai - API for Desktop Recording
+
+If you’re looking for a hosted desktop recording API, consider checking out [Recall.ai](https://www.recall.ai/product/desktop-recording-sdk?utm_source=github&utm_medium=sponsorship&utm_campaign=hokein-electron-screen-recorder), an API that records Zoom, Google Meet, Microsoft Teams, in-person meetings, and more.
+
+## Demo 
+
 ![screenshot](screenshot/screen-recorder.gif)
 
 ## Using
@@ -18,9 +24,3 @@ electron-screen-recorder
 ## License
 
 [BSD](LICENSE)
-
-## Donation
-
-If this project helped you reduce time to develop, you can buy me a cup of coffee :)
-
-[![paypal](https://img.shields.io/badge/donate-paypal-brightgreen.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CNEG9K5ARLDZU)
